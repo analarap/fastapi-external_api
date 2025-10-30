@@ -11,7 +11,9 @@ def listar_dados():
     """Lista todos os dados da API externa"""
     response = requests.get(BASE_URL)
     if response.status_code != 200:
-        raise HTTPException(status_code=response.status_code, detail="Erro ao buscar dados externos")
+        raise HTTPException(
+            status_code=response.status_code, detail="Erro ao buscar dados externos"
+        )
     return response.json()
 
 
@@ -22,7 +24,9 @@ def buscar_dado(item_id: int):
     if response.status_code == 404:
         raise HTTPException(status_code=404, detail="Item não encontrado")
     elif response.status_code != 200:
-        raise HTTPException(status_code=response.status_code, detail="Erro ao buscar dado externo")
+        raise HTTPException(
+            status_code=response.status_code, detail="Erro ao buscar dado externo"
+        )
     return response.json()
 
 
@@ -33,5 +37,7 @@ def criar_dado(item: dict):
         raise HTTPException(status_code=400, detail="Dados inválidos")
     response = requests.post(BASE_URL, json=item)
     if response.status_code != 201:
-        raise HTTPException(status_code=response.status_code, detail="Erro ao criar dado externo")
+        raise HTTPException(
+            status_code=response.status_code, detail="Erro ao criar dado externo"
+        )
     return response.json()
