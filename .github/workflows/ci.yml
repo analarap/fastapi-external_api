@@ -19,4 +19,14 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Run Black (code format check)
+        run: black --check .
+
+      - name: Run Flake8 (style/lint check)
+        run: flake8 .
+
+      - name: Run Pytest (unit tests)
+        run: pytest --maxfail=1 --disable-warnings -q
